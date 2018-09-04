@@ -137,11 +137,8 @@ docker run \
 sleep 5
 
 # GET THE BNA
-ROOT=$DIR/..
-cd $ROOT
 npm install
-cd $DIR
-cp $ROOT/node_modules/letters-of-credit-network/dist/letters-of-credit-network.bna letters-of-credit-network.bna
+cp node_modules/letters-of-credit-network/dist/letters-of-credit-network.bna letters-of-credit-network.bna
 
 # INSTALL THE BNA
 docker run \
@@ -153,7 +150,7 @@ docker run \
   hyperledger/composer-cli:latest \
   network install -c PeerAdmin@hlfv1 -a letters-of-credit-network.bna
 
-NETWORK_VERSION=$(grep -o '"version": *"[^"]*"' $ROOT/node_modules/letters-of-credit-network/package.json | grep -o '[0-9]\.[0-9]\.[0-9]')
+NETWORK_VERSION=$(grep -o '"version": *"[^"]*"' node_modules/letters-of-credit-network/package.json | grep -o '[0-9]\.[0-9]\.[0-9]')
 
 # START THE BNA
 docker run \
